@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('appointment_id')->constrained();
+            $table->decimal('total_amount',10,2);
+            $table->boolean('is_processed')->default(false);
+            $table->timestamp('processed_at')->nullable();
             $table->timestamps();
         });
     }

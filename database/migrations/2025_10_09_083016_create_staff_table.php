@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
+            $table->string('staff_name');
+            $table->string('skill');
+            $table->enum('status',['available','unavailable'])->default('available');
             $table->timestamps();
         });
     }

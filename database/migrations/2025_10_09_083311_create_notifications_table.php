@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('appointment_id')->constrained();
+            $table->enum('type',['approved','rejected']);
+            $table->text('message');
+            $table->timestamp('sent_at')->nullable();
             $table->timestamps();
         });
     }

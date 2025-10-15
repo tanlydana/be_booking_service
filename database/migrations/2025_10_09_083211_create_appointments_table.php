@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->string('customer_name');
+            $table->string('customer_phone');
+            $table->foreignId('service_id')->constrained();
+            $table->foreignId('staff_id')->nullable()->constrained();
+            $table->date('appointment_date');
+            $table->time('appointment_time');
+            $table->enum('status', ['pending', 'approved', 'rejected', 'completed'])->default('pending');
+            $table->text('rejection_reason')->nullable();
             $table->timestamps();
         });
     }
